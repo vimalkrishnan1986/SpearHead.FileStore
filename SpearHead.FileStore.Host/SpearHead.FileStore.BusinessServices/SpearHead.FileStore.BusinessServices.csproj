@@ -54,6 +54,14 @@
       <Project>{a393a34f-14f9-471a-ac44-6943bd3c8eda}</Project>
       <Name>SpearHead.FileStore.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpearHead.FileStore.Common\SpearHead.FileStore.Common.csproj">
+      <Project>{edc1549a-d315-4785-b909-87524b4d6c69}</Project>
+      <Name>SpearHead.FileStore.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpearHead.FileStore.Data\SpearHead.FileStore.Data.csproj">
+      <Project>{323ACC04-05A1-48FF-AC78-B9C19FE9608E}</Project>
+      <Name>SpearHead.FileStore.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

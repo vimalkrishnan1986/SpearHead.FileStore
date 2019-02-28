@@ -12,6 +12,7 @@ using SpearHead.FileStore.Common.Logging;
 
 namespace SpearHead.FileStore.Api.Controllers
 {
+    [RoutePrefix("filestore/api")]
 
     public sealed class FileStoreController : BaseController
     {
@@ -24,12 +25,21 @@ namespace SpearHead.FileStore.Api.Controllers
 
         }
 
+        [HttpPut]
+        [Route("upload")]
         [ValidateModel]
         public async Task<IHttpActionResult> UploadModel([FromBody] FileModel fileModel)
         {
             _LoggingService.Log($"Request has been recieved , correlationId {CorrelationId}");
             await _fileBusinessService.UploadFile(fileModel);
             return Ok();
+        }
+
+        [Route("download/{id}")]
+        public async Task<IHttpActionResult> Get([FromUri] object id)
+        {
+            _LoggingService.Log($"Request has been recieved , correlationId {CorrelationId}");
+            return Ok(await _fileBusinessService.Dowload(id));
         }
 
     }

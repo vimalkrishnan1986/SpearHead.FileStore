@@ -3,7 +3,7 @@ using System.Web.Http.ExceptionHandling;
 using Owin;
 using SpearHead.FileStore.Api.Filters;
 using Microsoft.Extensions.DependencyInjection;
-
+using System.Net.Http.Formatting;
 namespace SpearHead.FileStore.Api.App_Start
 {
     public class Startup
@@ -17,7 +17,9 @@ namespace SpearHead.FileStore.Api.App_Start
             var services = new ServiceCollection();
             var serviceProvider = ServiceInjector.ConfigureServices(services);
             config.DependencyResolver = new DefaultDependencyResolver(serviceProvider);
-            config.Services.Replace(typeof(IExceptionHandler), new GlobalExceptionFilter());
+            config.Filters.Add(new GlobalExceptionFilter());
+            config.Formatters.Clear();
+            config.Formatters.Add(new JsonMediaTypeFormatter());
             appBuilder.UseWebApi(config);
         }
     }

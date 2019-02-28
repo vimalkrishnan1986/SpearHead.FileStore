@@ -41,7 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IFileDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpearHead.FileStore.Host\SpearHead.FileStore.Data\SpearHead.FileStore.Data.csproj">
+      <Project>{323acc04-05a1-48ff-ac78-b9c19fe9608e}</Project>
+      <Name>SpearHead.FileStore.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

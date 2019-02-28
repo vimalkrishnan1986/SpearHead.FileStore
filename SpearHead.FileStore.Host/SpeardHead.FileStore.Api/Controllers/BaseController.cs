@@ -6,7 +6,6 @@ using SpearHead.FileStore.Api.Filters;
 
 namespace SpearHead.FileStore.Api.Controllers
 {
-    [RoutePrefix("fileManager/api")]
     [GlobalExceptionFilter]
     public abstract class BaseController : ApiController
     {
