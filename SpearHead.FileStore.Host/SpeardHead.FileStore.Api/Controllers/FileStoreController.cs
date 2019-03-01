@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Net.Http;
 using System.Web.Http;
 using SpearHead.FileStore.BusinessServices.Contracts;
 using SpearHead.FileStore.Models;
@@ -31,12 +27,12 @@ namespace SpearHead.FileStore.Api.Controllers
         public async Task<IHttpActionResult> UploadModel([FromBody] FileModel fileModel)
         {
             _LoggingService.Log($"Request has been recieved , correlationId {CorrelationId}");
-            await _fileBusinessService.UploadFile(fileModel);
-            return Ok();
+            int id = await _fileBusinessService.UploadFile(fileModel);
+            return Ok(id);
         }
 
         [Route("download/{id}")]
-        public async Task<IHttpActionResult> Get([FromUri] object id)
+        public async Task<IHttpActionResult> Get([FromUri] int id)
         {
             _LoggingService.Log($"Request has been recieved , correlationId {CorrelationId}");
             return Ok(await _fileBusinessService.Dowload(id));

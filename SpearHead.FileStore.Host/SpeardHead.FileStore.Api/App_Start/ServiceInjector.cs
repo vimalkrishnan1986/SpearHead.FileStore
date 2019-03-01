@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Web.Http;
+using System.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SpearHead.FileStore.BusinessServices.Contracts;
 using SpearHead.FileStore.Common.Logging;
@@ -11,6 +12,9 @@ using SpearHead.FileStore.Data.Contracts;
 using SpearHead.FileStore.DataServices;
 using SpearHead.FileStore.Data.Repositories;
 using SpearHead.FileStore.Data.Entities;
+using System.Data.Entity;
+using SpearHead.FileStore.Data;
+using SpearHead.FileStore.Common.Helpers;
 
 namespace SpearHead.FileStore.Api.App_Start
 {
@@ -42,6 +46,7 @@ namespace SpearHead.FileStore.Api.App_Start
         private static void AddDataDependencies(ServiceCollection services)
         {
             services.AddTransient<IRepository<FileMetaData>, FileMetaDataRepository>();
+            services.AddSingleton<DbContext>(new Context(ConfigurationManager.ConnectionStrings["ConString"].ConnectionString));
             //dbcontext to be added here
         }
     }

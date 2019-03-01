@@ -58,7 +58,7 @@ namespace SpearHead.FileStore.BusinessServices
             var metaData = await _fileDataService.GetAsync(int.Parse(id.ToString()));
             if (metaData == null)
             {
-                throw new NotFoundException($"cCould not find the details for id:{id}");
+                throw new NotFoundException($"Could not find the details for id:{id}");
             }
 
             string filePath = GetFullFileName(GetDirectoryName(metaData.UploadTime), metaData.SavedFileName);
@@ -77,7 +77,7 @@ namespace SpearHead.FileStore.BusinessServices
             }
         }
 
-        public async Task UploadFile(FileModel model)
+        public async Task<int> UploadFile(FileModel model)
         {
             _loggingService.Log("Request has been recieved for file upload");
             DateTime dateTime = DateTime.UtcNow;
@@ -93,13 +93,15 @@ namespace SpearHead.FileStore.BusinessServices
                 _loggingService.Log($"Saving file {fileName}");
                 FileHelper.WriteToFile(model.FileBytes, GetFullFileName(directoryName, fileName));
                 _loggingService.Log("Successfully saved to repository");
-                await _fileDataService.AddAsync(new FileMetaData
+                var fileMetaData = new FileMetaData
                 {
                     ActualFileName = model.Name,
                     SavedFileName = fileName,
                     UploadTime = dateTime
-                });
+                };
+                await _fileDataService.AddAsync(fileMetaData);
                 _loggingService.Log("Metadata is saved to data base");
+                return fileMetaData.Id;
             }
             catch (Exception ex)
             {
