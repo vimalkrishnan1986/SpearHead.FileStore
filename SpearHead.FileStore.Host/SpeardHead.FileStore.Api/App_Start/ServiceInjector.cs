@@ -6,6 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using SpearHead.FileStore.BusinessServices.Contracts;
 using SpearHead.FileStore.Common.Logging;
 using SpearHead.FileStore.BusinessServices;
+using SpearHead.FileStore.DataServices.Contracts;
+using SpearHead.FileStore.Data.Contracts;
+using SpearHead.FileStore.DataServices;
+using SpearHead.FileStore.Data.Repositories;
+using SpearHead.FileStore.Data.Entities;
 
 namespace SpearHead.FileStore.Api.App_Start
 {
@@ -23,6 +28,7 @@ namespace SpearHead.FileStore.Api.App_Start
                 services.AddTransient(type);
             }
             AddDependencies(services);
+            AddDataDependencies(services);
             return services.BuildServiceProvider();
         }
 
@@ -30,6 +36,13 @@ namespace SpearHead.FileStore.Api.App_Start
         {
             services.AddTransient<IFileBusinessService, FileBusinessService>();
             services.AddTransient<ILoggingService, LoggingService>();
+            services.AddTransient<IFileDataService, FileDataService>();
+        }
+
+        private static void AddDataDependencies(ServiceCollection services)
+        {
+            services.AddTransient<IRepository<FileMetaData>, FileMetaDataRepository>();
+            //dbcontext to be added here
         }
     }
 }

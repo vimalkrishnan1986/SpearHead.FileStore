@@ -9,8 +9,8 @@ namespace SpearHead.FileStore.DataServices.Contracts
 {
     public interface IFileDataService
     {
-        Task<bool> AddAsync(FileMetaData fileMetaData);
+        Task AddAsync(FileMetaData fileMetaData);
         Task<FileMetaData> GetAsync(int id);
-        Task<bool> DeleteAsync(int id);
+        Task DeleteAsync(int id);
     }
 }

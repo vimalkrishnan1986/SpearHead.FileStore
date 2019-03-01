@@ -81,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SpearHead.FileStore.DataServices\SpearHead.FileStore.DataServices.csproj">
+      <Project>{822bcf3b-dbb6-4a2b-a58a-00fbfc92fc5f}</Project>
+      <Name>SpearHead.FileStore.DataServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\SpearHead.FileStore.Models\SpearHead.FileStore.Models.csproj">
       <Project>{a393a34f-14f9-471a-ac44-6943bd3c8eda}</Project>
       <Name>SpearHead.FileStore.Models</Name>
@@ -92,6 +96,10 @@
     <ProjectReference Include="..\SpearHead.FileStore.Common\SpearHead.FileStore.Common.csproj">
       <Project>{edc1549a-d315-4785-b909-87524b4d6c69}</Project>
       <Name>SpearHead.FileStore.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpearHead.FileStore.Data\SpearHead.FileStore.Data.csproj">
+      <Project>{323acc04-05a1-48ff-ac78-b9c19fe9608e}</Project>
+      <Name>SpearHead.FileStore.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
